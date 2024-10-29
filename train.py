@@ -151,11 +151,9 @@ if __name__ == "__main__":
     parser = TrlParser((ScriptArguments, TrainingArguments))
     script_args, training_args = parser.parse_args_and_config()    
     
-    # set use reentrant to False
     if training_args.gradient_checkpointing:
         training_args.gradient_checkpointing_kwargs = {"use_reentrant": True}
-    # set seed
+
     set_seed(training_args.seed)
 
-    # launch training
     training_function(script_args, training_args)
